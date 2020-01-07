@@ -97,6 +97,29 @@
 
         }
 
+        document.querySelectorAll("input")[5].onclick=function(){
+            console.log('oooo');
+            console.log("获取account[0]"+web3.eth.accounts[0]);
+            var fromAccount='0xb258e5b1b30215b112881c13f22ab5a47a624b81';
+            var toAccount='0xf417953e3b736a68cf7c60f89f459a28d25880da';
+            var amount=2000;
+            var message={from:fromAccount,to:toAccount,value:web3.toWei(amount,'ether')}
+            web3.personal.unlockAccount(web3.eth.accounts[0],"123456",function(error,result){
+                console.log(result);
+                console.log("解绑成功");
+                web3.eth.sendTransaction(message,function(error,result){
+                    var output='';
+                    if(!error){
+                        output+=result;
+                    }else{
+                        output="Error";
+                    }
+                    console.log(output);
+                })
+            });
+
+        }
+
 
 </script>
 <div id="result"></div>
